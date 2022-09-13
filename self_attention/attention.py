@@ -80,19 +80,19 @@ class SelfAttention(nn.Module):
 
         # Format the values
         print(v)
-        v_formatted = v[:, None]
+        v_formatted = v[None]
         print(v_formatted)
 
         # Format the attention scores
         print(softmax_attn_scores)
-        softmax_attn_scores_transpose = softmax_attn_scores.t()
+        softmax_attn_scores_transpose = softmax_attn_scores
         attn_scores_formatted = softmax_attn_scores_transpose[:, :, None]
         print(attn_scores_formatted)
 
         #  Compute the final output
         v_weighted = attn_scores_formatted * v_formatted
         print(v_weighted)
-        output = v_weighted.sum(dim=0)
+        output = v_weighted.sum(dim=1)
         print(output)
         print(softmax_attn_scores)
         # print(v)
